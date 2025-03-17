@@ -2,39 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shengtao Zhang - Personal Homepage</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #34495e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin: 2rem 0;
+        }
+
+        .timeline-item::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: #e0e0e0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
-    <div style="
-      background-color:blue;
-      text-align: center;
-      padding: 40px;
-    ">
-        <img src="https://kangwenchang.com/logo.png" alt="张圣涛" width="80px" height="80px"/>
-    </div>
-    <div style="
-      max-width: 200px;
-      margin: 50px auto;
-      padding:50px;
-      line-height: 1.7;
-      color:aqua;
+    <div class="container">
+        <header>
+            <h1>Shengtao Zhang</h1>
+            <p>School of Artificial Intelligence, Xi'an Jiaotong University | Undergraduate Student in AI</p>
+            <div class="contact-bar">
+                <span>📧 2226113976@stuDotxjtuDoteduDotcn</span>
+                <a href="https://github.com/3205914485/Home/index" target="_blank">💻 Github Portfolio</a>
+            </div>
+        </header>
 
-     ">
-    <p>nice to meet you</p>
-    <p>here we can go to bilibili</p>
+        <section id="education">
+            <h2>🎓 Education</h2>
+            <div class="timeline-item">
+                <h3>Xi'an Jiaotong University, School of AI (Sep 2022 - Present)</h3>
+                <ul>
+                    <li>Top 5% in class (Ranked 3/75 in Year 1, 4/64 in Year 2), GPA: 91.86/100</li>
+                    <li>Core Courses: Machine Learning (97), Computer Programming (97), Information Theory (96), Digital Signal Processing (95), NLP (95)</li>
+                    <li>English Proficiency: CET-6 (590), CET-4 (627)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2>🔬 Research Experience</h2>
+            <div class="timeline-item">
+                <h3>Dynamic Graph Semi-Supervised Learning (CCF-A Submitted)</h3>
+                <p><strong>Xi'an Jiaotong University, LUD Lab | Aug 2024 - Feb 2025</strong></p>
+                <ul>
+                    <li>Proposed an EM-based pseudo-label optimization framework with temporal curriculum learning</li>
+                    <li>Developed a dynamic graph code framework adapted to PyG/TGL</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Multimodal Spoiler Detection (CCF-B Submitted)</h3>
+                <p><strong>Xi'an Jiaotong University, LUD Lab | Sep 2023 - Aug 2024</strong></p>
+                <ul>
+                    <li>Integrated multimodal data: text reviews + user bias + movie genre</li>
+                    <li>Designed a hierarchical GNN architecture</li>
+                    <li>Applied Transformer-based cross-modal attention fusion</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>💻 Projects</h2>
+            <div class="timeline-item">
+                <h3>Lu Xun Style Text Transfer (NLP Course Top 1)</h3>
+                <ul>
+                    <li>Model: qwen-series + LoRA fine-tuning</li>
+                    <li>Deployment: Flask backend + Aliyun server</li>
+                    <li>Open-source: <a href="https://github.com/3205914485" target="_blank">GitHub Repository</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>🛠️ Technical Skills</h2>
+            <div class="skill-tags">
+                <span class="tag">Python (PyTorch)</span>
+                <span class="tag">C++11/14</span>
+                <span class="tag">Linux System Programming</span>
+                <span class="tag">PyG Graph Neural Networks</span>
+                <span class="tag">Flask Development</span>
+                <span class="tag">HuggingFace Transformers</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Shengtao Zhang | Last updated in March 2025</p>
+            <div class="skill-tags">
+                <a href="https://github.com/3205914485/Home/cv/cv.pdf" class="tag">📄 Download Full CV</a>
+            </div>
+        </footer>
     </div>
-    <divstyle="
-    background-color:blue;
-    text-align: center;
-    padding: 40px;
-    font-size:12px;
-  ">
-  <p>that is</p>
-  <a href="https://bilibili.com/">友情链接</a>
-  ></div>
-    
 </body>
 </html>
-
