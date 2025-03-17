@@ -17,6 +17,8 @@
             margin: 0;
             padding: 20px;
             color: var(--text-color);
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+            animation: fadeIn 1s ease-in;
         }
 
         .container {
@@ -24,10 +26,21 @@
             margin: 0 auto;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         header {
             text-align: center;
             padding: 2rem 0;
             border-bottom: 3px solid var(--secondary-color);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         h1 {
@@ -46,8 +59,9 @@
             margin: 2rem 0;
             padding: 1.5rem;
             background: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in;
         }
 
         h2 {
@@ -89,8 +103,8 @@
             <h1>Shengtao Zhang</h1>
             <p>School of Artificial Intelligence, Xi'an Jiaotong University | Undergraduate Student in AI</p>
             <div class="contact-bar">
-                <span>📧 2226113976@stuDotxjtuDoteduDotcn</span>
-                <a href="https://github.com/3205914485/Home/index" target="_blank">💻 Github Portfolio</a>
+                <span>📧 2226113976@stu.xjtu.edu.cn</span>
+                <a href="https://3205914485.github.io/Home/" target="_blank">💻 Github Portfolio</a>
             </div>
         </header>
 
@@ -110,7 +124,7 @@
             <h2>🔬 Research Experience</h2>
             <div class="timeline-item">
                 <h3>Dynamic Graph Semi-Supervised Learning (CCF-A Submitted)</h3>
-                <p><strong>Xi'an Jiaotong University, LUD Lab | Aug 2024 - Feb 2025</strong></p>
+                <p><strong>Xi'an Jiaotong University, <a href="https://luoundergradxjtu.github.io/" target="_blank">LUD Lab</a> | Aug 2024 - Feb 2025</strong></p>
                 <ul>
                     <li>Proposed an EM-based pseudo-label optimization framework with temporal curriculum learning</li>
                     <li>Developed a dynamic graph code framework adapted to PyG/TGL</li>
@@ -119,9 +133,9 @@
             
             <div class="timeline-item">
                 <h3>Multimodal Spoiler Detection (CCF-B Submitted)</h3>
-                <p><strong>Xi'an Jiaotong University, LUD Lab | Sep 2023 - Aug 2024</strong></p>
+                <p><strong>Xi'an Jiaotong University, <a href="https://luoundergradxjtu.github.io/" target="_blank">LUD Lab</a> | Sep 2023 - Aug 2024</strong></p>
                 <ul>
-                    <li>Integrated multimodal data: text reviews + user bias + movie genre</li>
+                    <li>Integrated multimodal data: reviews text + user bias + movie genre</li>
                     <li>Designed a hierarchical GNN architecture</li>
                     <li>Applied Transformer-based cross-modal attention fusion</li>
                 </ul>
@@ -134,8 +148,14 @@
                 <h3>Lu Xun Style Text Transfer (NLP Course Top 1)</h3>
                 <ul>
                     <li>Model: qwen-series + LoRA fine-tuning</li>
-                    <li>Deployment: Flask backend + Aliyun server</li>
+                    <li>Deployment: Flask backend + Html frontend</li>
                     <li>Open-source: <a href="https://github.com/3205914485" target="_blank">GitHub Repository</a></li>
+                </ul>
+                <h3>Intelligent Sleep Monitoring System (National IoT Competition, 1st Prize)</h3>
+                <p><strong>Zhengzhou University | Jul 2024 - Sep 2024</strong></p>
+                <ul>
+                    <li>Developed a non-contact sleep quality and posture detection system using mmWave radar, PYNQ-Z2 camera, and sensors</li>
+                    <li>Designed two vision-based classification models: ResNet18 and a multimodal large model</li>
                 </ul>
             </div>
         </section>
