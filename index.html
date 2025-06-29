@@ -20,7 +20,7 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 0; /* Remove padding here, add to container */
+            padding: 0;
             color: var(--text-color);
             background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
             animation: fadeIn 1s ease-in;
@@ -29,7 +29,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px; /* Add padding here for content */
+            padding: 20px;
         }
 
         @keyframes fadeIn {
@@ -54,10 +54,19 @@
             padding: 0.8rem 1.5rem;
             margin: 0 10px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .navbar a:hover {
+        /* Navigation Bar Active State */
+        .navbar a.active {
+            background-color: white; /* White background for active link */
+            color: var(--primary-color); /* Dark blue text for active link */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            transform: translateY(-2px); /* Slight lift */
+        }
+
+        /* Ensure hover styles still work for non-active links */
+        .navbar a:not(.active):hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
         }
@@ -68,7 +77,7 @@
             padding: 2rem 0;
             border-bottom: 3px solid var(--secondary-color);
             animation: slideIn 1s ease-in-out;
-            margin-bottom: 2rem; /* Add space below header */
+            margin-bottom: 2rem;
         }
 
         @keyframes slideIn {
@@ -135,12 +144,12 @@
         }
 
         .timeline-item::before {
-            content: "▹"; /* Custom bullet point */
+            content: "▹";
             position: absolute;
             left: 0;
             color: var(--secondary-color);
             font-size: 1.2em;
-            line-height: 1.6; /* Align with text */
+            line-height: 1.6;
         }
 
         .timeline-item h3 {
@@ -156,7 +165,7 @@
 
         .timeline-item ul {
             padding-left: 20px;
-            list-style: disc; /* Default bullet for clarity */
+            list-style: disc;
         }
 
         .timeline-item li {
@@ -247,7 +256,8 @@
 
     <div class="container">
         <header>
-            <img src="imgs/shengtao_zhang.jpg" alt="Shengtao Zhang" class="profile-photo"> <h1>Shengtao Zhang</h1>
+            <img src="imgs/shengtao_zhang.jpg" alt="Shengtao Zhang" class="profile-photo">
+            <h1>Shengtao Zhang</h1>
             <p>School of Artificial Intelligence, Xi'an Jiaotong University | Undergraduate Student in AI</p>
             <div class="contact-bar">
                 <span><i class="fas fa-envelope"></i> zhangst@stu.xjtu.edu.cn</span>
@@ -348,5 +358,45 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar a');
+
+            function highlightNavLink() {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Define an offset for when the section should be considered "active".
+                    // This helps to activate the nav link a bit before the section hits the very top.
+                    const offset = window.innerHeight * 0.3; // Highlight when 30% of section is visible
+
+                    if (pageYOffset >= sectionTop - offset) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Remove 'active' class from all links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add 'active' class to the corresponding link
+                navLinks.forEach(link => {
+                    if (link.href.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Listen for scroll events
+            window.addEventListener('scroll', highlightNavLink);
+
+            // Call it once on page load to set the initial active link
+            highlightNavLink();
+        });
+    </script>
 </body>
 </html>
