@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shengtao Zhang - Personal Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --text-color: #34495e;
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #3498db; /* Bright Blue */
+            --text-color: #34495e; /* Dark Gray */
+            --bg-light: #f8f9fa; /* Light Gray Background for Sections */
+            --bg-gradient-start: #eef2f3; /* Light Gradient Start */
+            --bg-gradient-end: #dfe9f3; /* Light Gradient End */
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding: 0; /* Remove padding here, add to container */
             color: var(--text-color);
-            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+            background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
             animation: fadeIn 1s ease-in;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px; /* Add padding here for content */
         }
 
         @keyframes fadeIn {
@@ -31,11 +37,38 @@
             to { opacity: 1; }
         }
 
+        /* --- Navigation Bar --- */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .navbar a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- Header --- */
         header {
             text-align: center;
             padding: 2rem 0;
             border-bottom: 3px solid var(--secondary-color);
             animation: slideIn 1s ease-in-out;
+            margin-bottom: 2rem; /* Add space below header */
         }
 
         @keyframes slideIn {
@@ -43,9 +76,20 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
         h1 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .contact-bar {
@@ -53,12 +97,24 @@
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
+        .contact-bar span, .contact-bar a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-bar a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Sections --- */
         section {
             margin: 2rem 0;
             padding: 1.5rem;
-            background: #f8f9fa;
+            background: var(--bg-light);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             animation: fadeIn 1s ease-in;
@@ -68,8 +124,10 @@
             color: var(--secondary-color);
             border-left: 4px solid var(--secondary-color);
             padding-left: 1rem;
+            margin-bottom: 1.5rem;
         }
 
+        /* --- Timeline Items --- */
         .timeline-item {
             position: relative;
             padding-left: 30px;
@@ -77,16 +135,40 @@
         }
 
         .timeline-item::before {
-            content: "▹";
+            content: "▹"; /* Custom bullet point */
             position: absolute;
             left: 0;
             color: var(--secondary-color);
+            font-size: 1.2em;
+            line-height: 1.6; /* Align with text */
         }
 
+        .timeline-item h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .timeline-item p {
+            margin-top: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-item ul {
+            padding-left: 20px;
+            list-style: disc; /* Default bullet for clarity */
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Skill Tags --- */
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .tag {
@@ -94,24 +176,95 @@
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.9em;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .tag:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+
+        footer .skill-tags {
+            justify-content: center;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .contact-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .navbar a {
+                padding: 0.6rem 0.8rem;
+                margin: 0 5px;
+                font-size: 0.85em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            section {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+    </nav>
+
     <div class="container">
         <header>
-            <h1>Shengtao Zhang</h1>
+            <img src="imgs/shengtao_zhang.jpg" alt="Shengtao Zhang" class="profile-photo"> <h1>Shengtao Zhang</h1>
             <p>School of Artificial Intelligence, Xi'an Jiaotong University | Undergraduate Student in AI</p>
             <div class="contact-bar">
-                <span>📧 zhangst@stu.xjtu.edu.cn</span>
+                <span><i class="fas fa-envelope"></i> zhangst@stu.xjtu.edu.cn</span>
                 <a href="https://github.com/3205914485" target="_blank"><i class="fa-brands fa-github"></i> Github</a>
             </div>
         </header>
+
+        <section id="about">
+            <h2>👋 About Me</h2>
+            <p>I am Shengtao Zhang, an enthusiastic undergraduate student at Xi'an Jiaotong University, majoring in Artificial Intelligence. My passion lies in exploring cutting-edge areas such as reinforcement learning, natural language processing, and graph neural networks. I am actively involved in research, dedicated to developing innovative solutions and contributing to the AI community. I am always eager to learn and collaborate on challenging projects.</p>
+        </section>
 
         <section id="education">
             <h2>🎓 Education</h2>
             <div class="timeline-item">
                 <h3>Xi'an Jiaotong University, School of AI (Sep 2022 - Present)</h3>
+                <p><em>Pursuing a Bachelor's degree in Artificial Intelligence.</em></p>
                 <ul>
                     <li>Top 5% in class (Ranked 3/75 in Year 1, 4/64 in Year 2), GPA: 91.86/100</li>
                     <li>Core Courses: Machine Learning (97), Computer Programming (97), Information Theory (96), Digital Signal Processing (95), NLP (95)</li>
@@ -124,6 +277,7 @@
             <h2>🔬 Research Experience</h2>
             <div class="timeline-item">
                 <h3>PTCL: Pseudo-Label Temporal Curriculum Learning for Label-Limited Dynamic Graph (NeurIPS 2025 Submitted)</h3>
+                <p><strong><em>Proposed an EM-based pseudo-label optimization framework with temporal curriculum learning.</em></strong></p>
                 <p><strong>Xi'an Jiaotong University, <a href="https://luoundergradxjtu.github.io/" target="_blank">LUD Lab</a> | Aug 2024 - Feb 2025</strong></p>
                 <ul>
                     <li>Proposed an EM-based pseudo-label optimization framework with temporal curriculum learning</li>
@@ -133,6 +287,7 @@
             
             <div class="timeline-item">
                 <h3>Unveiling the Hidden: Movie Genre and User Bias in Spoiler Detection (ECML-PKDD 2025 <strong>Accepted</strong>)</h3>
+                <p><strong><em>Integrated multimodal data and designed a hierarchical GNN for improved spoiler detection.</em></strong></p>
                 <p><strong>Xi'an Jiaotong University, <a href="https://luoundergradxjtu.github.io/" target="_blank">LUD Lab</a> | Sep 2023 - Aug 2024</strong></p>
                 <ul>
                     <li>Integrated multimodal data: reviews text + user bias + movie genre</li>
@@ -146,6 +301,7 @@
             <h2>💻 Projects</h2>
             <div class="timeline-item">
                 <h3>Lu Xun Style Text Transfer (NLP Course Top 1)</h3>
+                <p><strong><em>Developed a text style transfer system achieving top performance in NLP course.</em></strong></p>
                 <p><strong>Xi'an Jiaotong University | Jan 2025 - Feb 2025</strong></p>
                 <ul>
                     <li>Model: qwen-series + LoRA fine-tuning</li>
@@ -155,6 +311,7 @@
             </div>
             <div class="timeline-item">
                 <h3>Intelligent Sleep Monitoring System (National IoT Competition, 1st Prize in the Northwest Regional Competition )</h3>
+                <p><strong><em>Engineered a non-contact system for sleep quality and posture detection.</em></strong></p>
                 <p><strong>Zhengzhou University | Jul 2024 - Sep 2024</strong></p>
                 <ul>
                     <li>Developed a non-contact sleep quality and posture detection system using mmWave radar, PYNQ-Z2 camera, and sensors</li>
@@ -165,20 +322,29 @@
 
         <section id="skills">
             <h2>🛠️ Technical Skills</h2>
+            <h3>Programming Languages</h3>
             <div class="skill-tags">
                 <span class="tag">Python (PyTorch)</span>
                 <span class="tag">C++11/14</span>
-                <span class="tag">Linux System Programming</span>
+            </div>
+            <h3>Frameworks & Libraries</h3>
+            <div class="skill-tags">
                 <span class="tag">PyG Graph Neural Networks</span>
                 <span class="tag">Flask Development</span>
                 <span class="tag">HuggingFace Transformers</span>
             </div>
+            <h3>Operating Systems & Tools</h3>
+            <div class="skill-tags">
+                <span class="tag">Linux System Programming</span>
+                <span class="tag">Git</span>
+                <span class="tag">Docker</span>
+            </div>
         </section>
 
         <footer>
-            <p>© 2025 Shengtao Zhang | Last updated in March 2025</p>
+            <p>&copy; 2025 Shengtao Zhang | Last updated: March 2025</p>
             <div class="skill-tags">
-                <a href="https://github.com/3205914485/Home/cv/cv.pdf" class="tag">📄 Download Full CV</a>
+                <a href="https://github.com/3205914485/Home/cv/cv.pdf" class="tag"><i class="fas fa-file-pdf"></i> Download Full CV</a>
             </div>
         </footer>
     </div>
