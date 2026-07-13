@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   publicationBySlug,
@@ -80,11 +81,11 @@ export default async function PublicationPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <header className="detail-header section-shell">
-        <a href="/" className="brand" aria-label="Back to Shengtao Zhang home">
+        <Link href="/" className="brand" aria-label="Back to Shengtao Zhang home">
           <span className="brand-mark" aria-hidden="true">S</span>
           <span>Shengtao Zhang</span>
-        </a>
-        <a href="/#publications">← All publications</a>
+        </Link>
+        <Link href="/#publications">← All publications</Link>
       </header>
 
       <main className="publication-detail section-shell">

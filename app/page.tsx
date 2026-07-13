@@ -270,8 +270,8 @@ export default async function Home() {
             </div>
             <p>
               A verified, topic-filterable index. Citation signals refresh from
-              OpenAlex while the publication list remains manually reviewed
-              against Google Scholar.
+              DOI registries with an OpenAlex fallback, while the publication
+              list remains manually reviewed against Google Scholar.
             </p>
           </div>
           <PublicationExplorer />

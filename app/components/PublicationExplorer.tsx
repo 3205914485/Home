@@ -9,9 +9,15 @@ import {
 type LivePublication = Pick<
   Publication,
   "title" | "venue" | "year" | "paperUrl" | "doi"
-> & { citationCount?: number | null };
+> & {
+  citationCount?: number | null;
+  citationSource?: string | null;
+};
 
-type DisplayPublication = Publication & { citationCount?: number | null };
+type DisplayPublication = Publication & {
+  citationCount?: number | null;
+  citationSource?: string | null;
+};
 
 type LiveResponse = {
   source: string;
@@ -77,6 +83,7 @@ export function PublicationExplorer() {
             ? {
                 ...publication,
                 citationCount: update.citationCount,
+                citationSource: update.citationSource,
               }
             : publication;
         }),
@@ -90,7 +97,10 @@ export function PublicationExplorer() {
   }, []);
 
   useEffect(() => {
-    void syncPublications();
+    const frame = window.requestAnimationFrame(() => {
+      void syncPublications();
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [syncPublications]);
 
   const filtered = useMemo(() => {
@@ -119,7 +129,7 @@ export function PublicationExplorer() {
 
   const syncLabel =
     syncState === "syncing"
-      ? "Checking DBLP…"
+      ? "Checking citation sources…"
       : syncState === "synced" && syncedAt
         ? `${syncSource} checked ${new Intl.DateTimeFormat("en", {
             month: "short",
@@ -185,7 +195,8 @@ export function PublicationExplorer() {
                 {publication.citationCount !== null &&
                 publication.citationCount !== undefined ? (
                   <span className="micro-tag">
-                    {publication.citationCount} OpenAlex citation
+                    {publication.citationCount}{" "}
+                    {publication.citationSource || "live"} citation
                     {publication.citationCount === 1 ? "" : "s"}
                   </span>
                 ) : null}
