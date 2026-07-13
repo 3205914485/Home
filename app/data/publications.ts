@@ -13,6 +13,7 @@ export type Publication = {
   doi: string;
   arxiv: string;
   scholarUrl: string;
+  scholarCitations: number;
   featured?: boolean;
   contribution: string;
   abstract: string;
@@ -50,6 +51,7 @@ export const publications: Publication[] = [
     arxiv: "2601.03192",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:9yKSN-GCB0IC",
+    scholarCitations: 76,
     featured: true,
     contribution:
       "A non-parametric route to runtime self-improvement: keep the reasoner stable, let episodic memory learn utility from feedback.",
@@ -90,6 +92,7 @@ export const publications: Publication[] = [
     arxiv: "2605.08374",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:UeHWp8X0CEIC",
+    scholarCitations: 0,
     featured: true,
     contribution:
       "Credit assignment for agent memory, propagated through the provenance chains that make later memories possible.",
@@ -121,22 +124,26 @@ export const publications: Publication[] = [
     venue: "ICML",
     year: 2026,
     tags: ["Agents", "RL", "Memory", "Systems"],
-    paperUrl: "https://arxiv.org/abs/2603.10846",
-    pdfUrl: "https://arxiv.org/pdf/2603.10846",
+    paperUrl: "https://openreview.net/forum?id=ajHTru25Kd",
+    pdfUrl:
+      "https://openreview.net/pdf/22928270cbb3cec9d649ad5a1a9275e1c4403016.pdf",
     projectUrl: "https://evokernel.zhuo.li",
     doi: "10.48550/arXiv.2603.10846",
     arxiv: "2603.10846",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:2osOgNQ5qMEC",
+    scholarCitations: 1,
     featured: true,
     contribution:
       "Value-guided experience reuse turns sparse NPU feedback into a continual drafting-and-refinement loop.",
     abstract:
-      "EvoKernel addresses cold-start code generation in data-scarce accelerator ecosystems. It casts NPU kernel synthesis as a memory-based reinforcement-learning process, learns stage-specific experience values for initial drafting and later latency refinement, and shares useful experience across tasks. The resulting agent accumulates practical optimization knowledge online instead of relying on expensive domain-specific fine-tuning.",
-    bibtex: `@article{zheng2026evokernel,
+      "Published at ICML 2026, EvoKernel addresses cold-start code generation in data-scarce accelerator ecosystems. It casts NPU kernel synthesis as a memory-based reinforcement-learning process, learns stage-specific experience values for initial drafting and later latency refinement, and shares useful experience across tasks. The resulting agent accumulates practical optimization knowledge online instead of relying on expensive domain-specific fine-tuning.",
+    bibtex: `@inproceedings{zheng2026evokernel,
   title={Towards Cold-Start Drafting and Continual Refining: A Value-Driven Memory Approach with Application to NPU Kernel Synthesis},
   author={Zheng, Yujie and Li, Zhuo and Zhang, Shengtao and Wang, Jiaqian and Sheng, Junjie and Yan, Junchi and Zhang, Weinan and Wen, Ying and Tang, Bo and Wen, Muning},
-  booktitle={International Conference on Machine Learning},
+  booktitle={Proceedings of the 43rd International Conference on Machine Learning},
+  series={Proceedings of Machine Learning Research},
+  volume={306},
   year={2026}
 }`,
   },
@@ -179,6 +186,7 @@ export const publications: Publication[] = [
     arxiv: "2509.17046",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:d1gkVwhDpl0C",
+    scholarCitations: 3,
     contribution:
       "A reasoning-rich breast ultrasound resource that connects images, pathology coverage, and clinically grounded chains of thought.",
     abstract:
@@ -216,6 +224,7 @@ export const publications: Publication[] = [
     arxiv: "2504.17641",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:u5HHmVD_uO8C",
+    scholarCitations: 0,
     contribution:
       "Temporal curriculum learning makes final-timestamp labels useful across the full evolution of a dynamic graph.",
     abstract:
@@ -250,6 +259,7 @@ export const publications: Publication[] = [
     arxiv: "2504.17834",
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:u-x6o8ySG0sC",
+    scholarCitations: 1,
     contribution:
       "Genre structure and user history expose spoiler patterns that text-only classifiers tend to miss.",
     abstract:
@@ -271,6 +281,8 @@ export const publicationBySlug = new Map(
 
 export const scholarSearchUrl =
   "https://scholar.google.com/citations?user=9nwcqAIAAAAJ&hl=en";
+
+export const scholarCitationsCheckedAt = "2026-07-13";
 
 export function scholarCiteUrl(title: string) {
   return `https://scholar.google.com/scholar?q=${encodeURIComponent(`allintitle: ${title}`)}`;

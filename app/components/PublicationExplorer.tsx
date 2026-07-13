@@ -1,29 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   publications as canonicalPublications,
+  scholarCitationsCheckedAt,
   type Publication,
 } from "../data/publications";
-
-type LivePublication = Pick<
-  Publication,
-  "title" | "venue" | "year" | "paperUrl" | "doi"
-> & {
-  citationCount?: number | null;
-  citationSource?: string | null;
-};
-
-type DisplayPublication = Publication & {
-  citationCount?: number | null;
-  citationSource?: string | null;
-};
-
-type LiveResponse = {
-  source: string;
-  syncedAt: string;
-  publications: LivePublication[];
-};
 
 const topics = [
   "All",
@@ -54,58 +36,13 @@ function Authors({ names }: { names: string[] }) {
 export function PublicationExplorer() {
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState("All");
-  const [items, setItems] = useState<DisplayPublication[]>(canonicalPublications);
-  const [syncState, setSyncState] = useState<
-    "idle" | "syncing" | "synced" | "offline"
-  >("idle");
-  const [syncedAt, setSyncedAt] = useState<string | null>(null);
-  const [syncSource, setSyncSource] = useState("verified index");
   const [activeCitation, setActiveCitation] = useState<Publication | null>(null);
   const [copyState, setCopyState] = useState("Copy BibTeX");
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const syncPublications = useCallback(async () => {
-    setSyncState("syncing");
-    try {
-      const response = await fetch("/api/publications", { cache: "no-store" });
-      if (!response.ok) throw new Error("Publication sync unavailable");
-      const live = (await response.json()) as LiveResponse;
-      const liveByTitle = new Map(
-        live.publications.map((publication) => [
-          normalize(publication.title),
-          publication,
-        ]),
-      );
-      setItems(
-        canonicalPublications.map((publication) => {
-          const update = liveByTitle.get(normalize(publication.title));
-          return update
-            ? {
-                ...publication,
-                citationCount: update.citationCount,
-                citationSource: update.citationSource,
-              }
-            : publication;
-        }),
-      );
-      setSyncedAt(live.syncedAt);
-      setSyncSource(live.source);
-      setSyncState("synced");
-    } catch {
-      setSyncState("offline");
-    }
-  }, []);
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      void syncPublications();
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [syncPublications]);
-
   const filtered = useMemo(() => {
     const normalizedQuery = normalize(query);
-    return items.filter((publication) => {
+    return canonicalPublications.filter((publication) => {
       const matchesTopic =
         topic === "All" || publication.tags.includes(topic);
       const haystack = normalize(
@@ -113,7 +50,7 @@ export function PublicationExplorer() {
       );
       return matchesTopic && (!normalizedQuery || haystack.includes(normalizedQuery));
     });
-  }, [items, query, topic]);
+  }, [query, topic]);
 
   function openCitation(publication: Publication) {
     setActiveCitation(publication);
@@ -126,20 +63,6 @@ export function PublicationExplorer() {
     await navigator.clipboard.writeText(activeCitation.bibtex);
     setCopyState("Copied");
   }
-
-  const syncLabel =
-    syncState === "syncing"
-      ? "Checking citation sources…"
-      : syncState === "synced" && syncedAt
-        ? `${syncSource} checked ${new Intl.DateTimeFormat("en", {
-            month: "short",
-            day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-          }).format(new Date(syncedAt))}`
-        : syncState === "offline"
-          ? "Showing verified local records"
-          : "Verified publication index";
 
   return (
     <>
@@ -154,18 +77,6 @@ export function PublicationExplorer() {
             placeholder="Search title, venue, or topic"
           />
         </label>
-        <div className="sync-state" aria-live="polite">
-          <span className={`sync-dot sync-dot-${syncState}`} aria-hidden="true" />
-          <span>{syncLabel}</span>
-          <button
-            type="button"
-            className="text-button"
-            onClick={() => void syncPublications()}
-            disabled={syncState === "syncing"}
-          >
-            Refresh
-          </button>
-        </div>
       </div>
 
       <div className="topic-filter" aria-label="Filter publications by topic">
@@ -192,14 +103,15 @@ export function PublicationExplorer() {
               <div className="publication-kicker">
                 <span>{publication.venue}</span>
                 <span>{publication.year}</span>
-                {publication.citationCount !== null &&
-                publication.citationCount !== undefined ? (
-                  <span className="micro-tag">
-                    {publication.citationCount}{" "}
-                    {publication.citationSource || "live"} citation
-                    {publication.citationCount === 1 ? "" : "s"}
-                  </span>
-                ) : null}
+                <a
+                  className="micro-tag citation-count"
+                  href={publication.scholarUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={`Google Scholar citations, checked ${scholarCitationsCheckedAt}`}
+                >
+                  Cited by {publication.scholarCitations}
+                </a>
                 {publication.tags.slice(0, 3).map((tag) => (
                   <span className="micro-tag" key={tag}>
                     {tag}
@@ -289,7 +201,7 @@ export function PublicationExplorer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Find on Google Scholar ↗
+                Cited by {activeCitation.scholarCitations} on Google Scholar ↗
               </a>
             </div>
             <span className="sr-only" aria-live="polite">

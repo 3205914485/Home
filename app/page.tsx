@@ -33,10 +33,10 @@ const news = [
     href: "https://arxiv.org/abs/2605.08374",
   },
   {
-    date: "2026.03",
-    title: "EvoKernel released",
+    date: "2026.04",
+    title: "EvoKernel accepted at ICML 2026",
     copy: "Value-driven memory for cold-start NPU kernel synthesis and continual refinement.",
-    href: "https://arxiv.org/abs/2603.10846",
+    href: "https://openreview.net/forum?id=ajHTru25Kd",
   },
   {
     date: "2026.01",
@@ -236,7 +236,9 @@ export default async function Home() {
               >
                 <div className="featured-meta">
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span>{publication.year}</span>
+                  <span>
+                    {publication.venue} · {publication.year}
+                  </span>
                 </div>
                 <div>
                   <p className="featured-tags">{publication.tags.join(" · ")}</p>
@@ -251,6 +253,13 @@ export default async function Home() {
                   <a href={`/publications/${publication.slug}`}>Read overview</a>
                   <a href={publication.paperUrl} target="_blank" rel="noreferrer">
                     Paper ↗
+                  </a>
+                  <a
+                    href={publication.scholarUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Cited by {publication.scholarCitations} ↗
                   </a>
                 </div>
               </article>
@@ -269,9 +278,8 @@ export default async function Home() {
               <h2 id="publications-title">Research index.</h2>
             </div>
             <p>
-              A verified, topic-filterable index. Citation signals refresh from
-              DOI registries with an OpenAlex fallback, while the publication
-              list remains manually reviewed against Google Scholar.
+              Work on self-evolving agents, reinforcement learning, and memory,
+              alongside graph learning, language, and multimodal reasoning.
             </p>
           </div>
           <PublicationExplorer />

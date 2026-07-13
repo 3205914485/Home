@@ -144,7 +144,7 @@ export default async function PublicationPage({ params }: PageProps) {
               target="_blank"
               rel="noreferrer"
             >
-              Find citation on Google Scholar ↗
+              Cited by {publication.scholarCitations} on Google Scholar ↗
             </a>
           </aside>
         </div>

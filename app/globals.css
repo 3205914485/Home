@@ -742,8 +742,7 @@ a {
 
 .publication-tools {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) auto;
-  gap: 24px;
+  grid-template-columns: minmax(260px, 1fr);
   align-items: center;
   padding: 18px 0;
   border-top: 1px solid var(--line-strong);
@@ -775,34 +774,6 @@ a {
 
 .search-field input::placeholder {
   color: #8b9297;
-}
-
-.sync-state {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  color: var(--muted);
-  font-size: 0.7rem;
-}
-
-.sync-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #8b9297;
-}
-
-.sync-dot-synced {
-  background: var(--teal);
-}
-
-.sync-dot-syncing {
-  background: var(--blue);
-  animation: pulse-opacity 1s ease-in-out infinite;
-}
-
-.sync-dot-offline {
-  background: var(--red);
 }
 
 .text-button {
@@ -915,6 +886,15 @@ a {
   background: rgba(13, 124, 114, 0.045);
   letter-spacing: 0.06em;
   text-transform: none;
+}
+
+.citation-count {
+  text-decoration: none;
+}
+
+.citation-count:hover {
+  color: var(--blue);
+  border-color: rgba(49, 87, 245, 0.3);
 }
 
 .publication-content h3 {
@@ -1354,12 +1334,6 @@ a {
   }
 }
 
-@keyframes pulse-opacity {
-  50% {
-    opacity: 0.35;
-  }
-}
-
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
@@ -1507,10 +1481,6 @@ a {
   .publication-tools {
     grid-template-columns: 1fr;
     gap: 8px;
-  }
-
-  .sync-state {
-    justify-content: space-between;
   }
 
   .publication-row {
