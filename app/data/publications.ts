@@ -63,14 +63,14 @@ export const publications: Publication[] = [
     scholarCitations: 76,
     featured: true,
     featuredFigure: {
-      src: "/papers/memrl-overview.png",
-      width: 2367,
-      height: 1331,
-      alt: "MemRL concept figure contrasting stable human reasoning with a frozen language model and an evolving value-aware episodic memory.",
-      label: "Runtime learning",
+      src: "/papers/memrl-method.png",
+      width: 1543,
+      height: 920,
+      alt: "MemRL method diagram showing two-phase retrieval, a frozen language model, environment feedback, and Q-value updates for episodic memory items.",
+      label: "Method overview",
       caption:
-        "A frozen LLM preserves stable reasoning. Its evolving episodic memory stores intent, attempts, and utility, then learns better value-aware retrieval from environmental feedback.",
-      sourceUrl: "https://arxiv.org/abs/2601.03192",
+        "MemRL first recalls similar episodes, then selects them by learned Q-values. The frozen LLM acts with the retrieved context, while environmental rewards update each memory item's utility.",
+      sourceUrl: "https://arxiv.org/pdf/2601.03192v2#page=4",
     },
     contribution:
       "A non-parametric route to runtime self-improvement: keep the reasoner stable, let episodic memory learn utility from feedback.",
