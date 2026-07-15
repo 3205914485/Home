@@ -231,7 +231,7 @@ export default async function Home() {
           <div className="featured-grid">
             {featured.map((publication, index) => (
               <article
-                className={`featured-card featured-card-${index + 1}`}
+                className={`featured-card featured-card-${publication.slug}`}
                 key={publication.slug}
               >
                 <div className="featured-meta">
@@ -240,7 +240,7 @@ export default async function Home() {
                     {publication.venue} · {publication.year}
                   </span>
                 </div>
-                <div>
+                <div className="featured-copy">
                   <p className="featured-tags">{publication.tags.join(" · ")}</p>
                   <h3>
                     <a href={`/publications/${publication.slug}`}>
@@ -249,6 +249,46 @@ export default async function Home() {
                   </h3>
                   <p>{publication.contribution}</p>
                 </div>
+                {publication.featuredFigure ? (
+                  <figure className="featured-figure">
+                    <a
+                      className="featured-figure-image"
+                      href={publication.featuredFigure.src}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open the full-size ${publication.shortTitle} figure`}
+                    >
+                      <img
+                        src={publication.featuredFigure.src}
+                        width={publication.featuredFigure.width}
+                        height={publication.featuredFigure.height}
+                        alt={publication.featuredFigure.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                    <figcaption>
+                      <span>{publication.featuredFigure.label}</span>
+                      <p>{publication.featuredFigure.caption}</p>
+                      <div className="featured-figure-actions">
+                        <a
+                          href={publication.featuredFigure.src}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Full figure ↗
+                        </a>
+                        <a
+                          href={publication.featuredFigure.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View paper ↗
+                        </a>
+                      </div>
+                    </figcaption>
+                  </figure>
+                ) : null}
                 <div className="featured-links">
                   <a href={`/publications/${publication.slug}`}>Read overview</a>
                   <a href={publication.paperUrl} target="_blank" rel="noreferrer">

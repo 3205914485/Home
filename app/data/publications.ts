@@ -15,6 +15,15 @@ export type Publication = {
   scholarUrl: string;
   scholarCitations: number;
   featured?: boolean;
+  featuredFigure?: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+    label: string;
+    caption: string;
+    sourceUrl: string;
+  };
   contribution: string;
   abstract: string;
   bibtex: string;
@@ -53,6 +62,16 @@ export const publications: Publication[] = [
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:9yKSN-GCB0IC",
     scholarCitations: 76,
     featured: true,
+    featuredFigure: {
+      src: "/papers/memrl-overview.png",
+      width: 2367,
+      height: 1331,
+      alt: "MemRL concept figure contrasting stable human reasoning with a frozen language model and an evolving value-aware episodic memory.",
+      label: "Runtime learning",
+      caption:
+        "A frozen LLM preserves stable reasoning. Its evolving episodic memory stores intent, attempts, and utility, then learns better value-aware retrieval from environmental feedback.",
+      sourceUrl: "https://arxiv.org/abs/2601.03192",
+    },
     contribution:
       "A non-parametric route to runtime self-improvement: keep the reasoner stable, let episodic memory learn utility from feedback.",
     abstract:
@@ -94,6 +113,16 @@ export const publications: Publication[] = [
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:UeHWp8X0CEIC",
     scholarCitations: 0,
     featured: true,
+    featuredFigure: {
+      src: "/papers/memq-overview.png",
+      width: 2317,
+      height: 1094,
+      alt: "MemQ lifecycle from a provenance DAG and Q-guided retrieval through environment feedback to backward credit propagation.",
+      label: "Memory lifecycle",
+      caption:
+        "Each interaction retrieves memories, creates a new episode, and records its provenance. TD feedback then travels backward through the DAG to update the memories that enabled success.",
+      sourceUrl: "https://arxiv.org/abs/2605.08374",
+    },
     contribution:
       "Credit assignment for agent memory, propagated through the provenance chains that make later memories possible.",
     abstract:
@@ -134,6 +163,16 @@ export const publications: Publication[] = [
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=9nwcqAIAAAAJ&citation_for_view=9nwcqAIAAAAJ:2osOgNQ5qMEC",
     scholarCitations: 1,
     featured: true,
+    featuredFigure: {
+      src: "/papers/evokernel-overview.png",
+      width: 1985,
+      height: 735,
+      alt: "EvoKernel framework connecting cold-start drafting, value-driven memory and verification, and continual kernel refinement.",
+      label: "Draft-to-refine loop",
+      caption:
+        "Cold-start drafting retrieves transferable experience for an initial kernel. Verification rewards update the shared memory, which later reuses successful traces for continual latency refinement.",
+      sourceUrl: "https://openreview.net/forum?id=ajHTru25Kd",
+    },
     contribution:
       "Value-guided experience reuse turns sparse NPU feedback into a continual drafting-and-refinement loop.",
     abstract:
