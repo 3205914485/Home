@@ -1206,6 +1206,48 @@ a {
   line-height: 1.78;
 }
 
+.personal-motto {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  max-width: 680px;
+  margin-top: 42px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.motto-initials {
+  padding-top: 5px;
+  color: var(--blue);
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+.motto-copy strong,
+.motto-copy span {
+  display: block;
+}
+
+.motto-copy strong {
+  font-family: var(--serif);
+  font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.motto-copy span {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
 .about-aside {
   align-self: end;
   border-top: 1px solid var(--line-strong);
@@ -1731,6 +1773,16 @@ a {
 
   .about-aside > div {
     grid-template-columns: 90px minmax(0, 1fr);
+  }
+
+  .personal-motto {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 34px;
+  }
+
+  .motto-initials {
+    padding-top: 0;
   }
 
   .cite-dialog {

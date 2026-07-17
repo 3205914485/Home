@@ -366,6 +366,13 @@ export default async function Home() {
               Jiaotong University and worked on dynamic graph learning,
               language understanding, and reliable decision systems.
             </p>
+            <div className="personal-motto" aria-label="Personal motto">
+              <strong className="motto-initials">Z. S. T.</strong>
+              <div className="motto-copy">
+                <strong lang="en">Zeal stirs tides.</strong>
+                <span lang="zh-CN">「热望所至，潮涌不息。」</span>
+              </div>
+            </div>
           </div>
           <aside className="about-aside" aria-label="Profile details">
             <div>
